@@ -1,0 +1,57 @@
+1. query_001.txt中可以看到，同一個query可能會有兩個一樣的keyword，如第二個case: Software software。從這個case的答案可以看到，corpus中不必
+   出現兩個software才會被選中。每一個query keyword只要有包含於某一corpus line，就滿足要求。
+
+2. S_ID 225724中的"1992&ndash;1993"，非英文字母會被直接remove, 所以對應的keyword只剩下"ndash"。
+
+3. S_ID 256715中的"Tool-Kit:"，對應的keyword為"toolkit"；同理，S_ID 33943中的u-Korea對應的keyword是"ukorea"，所以query中的"Korea"會找不到這個答案。
+
+4. S_ID 365901中的"Real-Time"，只會對應到一個keyword "realtime"，所以query中的"Real"是找不到對應的答案的。
+
+
+
+其中於corpus1.txt有特別多一個string ID 6, "This is an example that (1) you should remove all symbols, such as ? and :."
+
+主要請同學要將"非英文字母skip掉，也就是(1)跟,?:.等都要拿掉，正常來說，你應該要處理成:
+
+This
+
+is
+
+an
+
+example
+
+that
+
+you
+
+should
+
+remove
+
+all
+
+symbols
+
+such
+
+as
+
+and
+
+以上單子 （其中This可以轉為小寫this ）
+
+
+Validate.sh example
+你打這樣 再下chmod a+x validate.sh的指令，我比較不聰明，目前只想到這樣對不起，哈哈XD!
+rm -r Myresult answer
+mkdir Myresult answer
+cp -r /home/share/hw5/* answer/
+mv answer/testcase2/ answer/testcase_001/
+mv answer/testcase_001/result001 answer/testcase_001/result_001
+mv answer/testcase3/ answer/testcase_002/
+mv answer/testcase4/ answer/testcase_003/
+mv answer/testcase5/ answer/testcase_004/
+echo 1 _001 _002 _003 _004 | xargs -n 1 > args
+cat args | xargs -I {} bash -c "./hw5 answer/testcase{}/corpus{}.txt answer/testcase{}/query{}.txt > Myresult/result{}"
+cat args | xargs -I {} bash -c "diff answer/testcase{}/result{} Myresult/result{}"
