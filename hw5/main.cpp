@@ -2,7 +2,6 @@
 #include <fstream> //檔案讀寫
 #include <sstream> //字串處理
 #include <map> 
-#include <unordered_set> 
 #include <vector>
 #include <algorithm> // For remove_if function //For transform function
 #include <cctype>    // For ispunct function //For tolower function
@@ -35,7 +34,7 @@ int main(int argc, char *argv[]) {
 
 void process_word(string& word){
     string processed_word;
-    for (auto &c : word) {
+    for (auto & c : word) {
         if (isalpha(c)) {
             processed_word += tolower(c);
         }
