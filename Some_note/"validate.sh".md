@@ -4,10 +4,10 @@
 - It converts input from standard input into arguments to a command.
 - `xargs` also handles a large number of parameters that would go beyond the system's command line length limit.
 
-`rm -r result answer`
-`mkdir answer result`
-`cp /home/share/hw2/* answer/`
-`echo 1 2 3 | xargs -n 1 >> args`
+`rm -r result answer`  
+`mkdir answer result`  
+`cp /home/share/hw2/* answer/`  
+`echo 1 2 3 | xargs -n 1 >> args`  
 - This command involves the use of xargs. The echo 1 2 3 outputs "1 2 3" to stdout.
 - The >> args appends this output to the file named args. In the end, args contains 
 three lines: "1", "2", and "3".
